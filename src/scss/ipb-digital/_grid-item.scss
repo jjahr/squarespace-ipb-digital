@@ -1,0 +1,287 @@
+@mixin grid-item-columns($columns) {
+  width: (100% / 12) * $columns;
+}
+
+@mixin box-dec() {
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.grid-items {
+  
+///////////////////////////////////////////////////////////////////////////////////
+  $base-accent-color: #477DCA !default;
+  $base-background-color: white !default;
+  $medium-screen: em(640) !default;
+  $large-screen: em(860) !default;
+
+  $h1alpha: 0.86;
+  
+  p {
+    line-height: 1.5em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  
+//////////////////////////////////////////////////////////////////////////////////
+
+  $grid-items-background: $base-background-color;
+  $grid-item-background: desaturate($base-accent-color, 30%);
+  $grid-item-colors: 
+    desaturate($base-accent-color, 30%), 
+    #3581A5, 
+    #5FBEBE,
+    #98C79A,
+    #A7A891, 
+    #BDCC97,
+    #979EA0;
+  $grid-item-border-size: 9px;
+  $grid-item-columns: 4;
+  $grid-item-big-columns: 12;
+  $grid-item-color: white;
+  $grid-item-height: 400px;
+
+  @include clearfix;
+    
+  .grid-item {
+    position: relative;
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    padding: 0;
+    border: 2px solid white;
+    text-align: right;
+
+    @include transition (all 0.2s ease-in-out);
+    cursor: pointer;
+    float: left;
+    height: $grid-item-height;
+    overflow: hidden;
+    outline: none;
+    // padding: 2em;
+    // text-align: center;
+    width: 100%;
+
+    aside {
+      position: absolute;
+      right: 0;
+      display: block;
+      width: 30px;
+    }
+
+    h1 {
+      display: block;
+      width: 100%;
+      padding: 0 0 0 0%;
+      position: relative;
+      z-index: 2;
+      left: 10px;
+      @include transition(0.2s);
+
+      text-transform: uppercase;
+      color: white;
+      font-size: 2.6em;
+      line-height: 1.6em;
+      text-align: right;
+
+      span {
+        padding: 0.15em 45px 0.15em 0.4em;
+        @include box-dec();
+      }
+    }
+
+    .category {
+      text-transform: uppercase;
+      font-size: 0.7em;
+      letter-spacing: 0.02em;
+      margin: 80px 0 0.4em;
+      display: block;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      left: 10px;
+      @include transition(0.2s);
+
+      span {
+        background-color: rgba(white,$h1alpha);
+        padding: 0.4em 45px 0.4em 1em;
+        @include box-dec();
+      }
+    }
+    
+    &.orange {
+      .category span {
+        color: $orange;
+      }
+      h1 span {
+        background-color: rgba($orange, $h1alpha);
+      }
+    }
+    &.yellow {
+      .category span {
+        color: $yellow;
+      }
+      h1 span {
+        background-color: rgba($yellow, $h1alpha);
+      }
+    }
+    &.cyan {
+      .category {
+        color: $cyan;
+      }
+      h1 span {
+        background-color: rgba($cyan, $h1alpha);
+      }
+    }
+    &.red {
+      .category {
+        color: $red;
+      }
+      h1 span {
+        background-color: rgba($red, $h1alpha);
+      }
+    }
+    &.purple {
+      .category {
+        color: $purple;
+      }
+      h1 span {
+        background-color: rgba($purple, $h1alpha);
+      }
+    }
+    &.green {
+      .category {
+        color: $green;
+      }
+      h1 span {
+        background-color: rgba($green, $h1alpha);
+      }
+    }
+
+    @include media($large-screen) {
+      @include grid-item-columns($grid-item-columns);
+    }
+
+    &:after {
+        @include transition(0.2s);
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0;
+        background: black;        
+    }
+
+    &:hover {
+      &:after {
+        opacity: 0.5;
+      }
+      h1 {
+        left: 0;
+        // span {
+        //   padding-right: 40px;
+        // }
+      }
+      .category {
+        left: 3px;
+        // span {
+        //   padding-right: 40px;
+        // }
+      }
+    }
+
+//     @for $i from 1 through length($grid-item-colors) { 
+// // assign colors from $grid-item-colors list
+//       &:nth-child(#{$i}) {
+//         $background-from-list: nth($grid-item-colors, $i);
+//         background-color: $background-from-list;
+//         box-shadow: inset 0px 0px 1px 2px darken($background-from-list, 10%);
+
+//         &:focus,
+//         &:hover {
+//           // background-color: darken($background-from-list, 10%);
+//           // background-repeat: no-repeat;
+//           // background-position: top;
+//           // background-size: cover;
+//         }
+//       }
+//     }
+  }
+
+
+  // .grid-item img {
+  //     display: block;
+  //     height: 3em;
+  //     margin-bottom: 1em;
+  //     margin: auto;
+  //   }
+
+  // .grid-item h1 {
+  //     color: white;
+  //     font-size: 1.3em;
+  //     margin-bottom: 0.4em;
+  //   }
+
+  // .grid-item p {
+  //     margin: auto;
+  //     color: transparentize($grid-item-color, 0.3);
+      
+  //     @include media($medium-screen) {
+  //       max-width: 70%;
+  //     }
+  //   }
+
+  .col1-a {
+    @include media($large-screen) {
+      @include grid-item-columns(12);
+      h1 {
+        padding: 0 0 0 68%;
+      }
+    }
+  }
+  .col2-a {
+    @include media($large-screen) {
+      @include grid-item-columns(7);
+      h1 {
+        padding: 0 0 0 20%;
+      }
+    }
+  }
+  .col2-b {
+    @include media($large-screen) {
+      @include grid-item-columns(5);
+      h1 {
+        padding: 0 0 0 20%;
+      }
+    }
+  }
+  .col3-a {
+    @include media($large-screen) {
+      @include grid-item-columns(3);
+    }
+  }
+  .col3-b {
+    @include media($large-screen) {
+      @include grid-item-columns(6);
+    }
+  }
+
+
+
+//   .grid-item-image {
+//     background: url("https:
+// //raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png");
+//     background-color: $grid-item-background;
+//     background-position: top;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//   }
+}
